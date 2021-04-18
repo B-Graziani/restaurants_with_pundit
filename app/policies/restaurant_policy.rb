@@ -1,6 +1,7 @@
 class RestaurantPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
+      # scope.where(user: user)
       scope.all
     end
   end
@@ -8,6 +9,12 @@ class RestaurantPolicy < ApplicationPolicy
     true
   end
   def create?
-    true
+    false
+  end
+  def update?
+    record.user == user
+  end
+  def destroy?
+    record.user == user
   end
 end
